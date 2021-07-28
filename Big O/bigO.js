@@ -38,3 +38,8 @@ function logPairs(array){
 logPairs(boxes) // O(n*n)
 
 
+// There are 4 key points to note for Big O notation. 
+// 1. Worst case scenario. 
+// 2. Ignore constats. 
+// 3. Use different notations for different inputs. 
+// 4. Ignore non-dominant
