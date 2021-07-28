@@ -38,7 +38,7 @@ function logPairs(array){
 logPairs(boxes) // O(n*n)
 
 
-// There are 4 ruls for Big O notation. 
+// There are 4 rules for Big O notation. 
 // 1. Worst case scenario. 
 // 2. Ignore constats. 
 // 3. Use different notations for different inputs. 
