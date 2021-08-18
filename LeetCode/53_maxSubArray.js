@@ -1,4 +1,4 @@
-
+let nums1 = [8,5,4,-1,7,8,8,8]
 
 // Soulution 1: Brute force O(n3) time complexity    
 
@@ -14,7 +14,6 @@ let maxSubArray1 = function(nums){
         return calSum
     }
 
-
     for (let i = 0; i < nums.length ; i++){
         for (let j = i; j < nums.length ; j++ ){
 
@@ -29,35 +28,44 @@ let maxSubArray1 = function(nums){
     return maxSum
 }
 
-// console.log(maxSubArray1(nums))
+// console.log(maxSubArray1(nums1))
 
 
-// Solution 2: Find max and then find a substring containing that number
-let nums = [8,5,4,-1,7,8,8,8]
+// Solution 2: O(n) solution
+
+let nums2 = [8,-2,-4,-1,-8,3,8,8,3,4,2,-9,-1,-3,-6,8,-3,9]
 
 let maxSubArray2 = function(nums) {
-    let maxNumber = Math.max(...nums)
-    let maxNumberIndex = nums.indexOf(maxNumber)
-    let maxSum = maxNumber
+    let maxSum = nums[0]
+    let currentSum = 0
 
-    function sumOfArray(array, startIndex, endIndex){
-        let calSum = 0
-        for (let i = startIndex; i < endIndex + 1; i++){
-            calSum = calSum + array[i]
+    let i = 0
+    let j = 0
+    while( i < nums.length && j < nums.length){
+
+        currentSum = currentSum + nums[j]
+        if (currentSum > maxSum){
+            maxSum = currentSum
         }
-        return calSum
+        
+        j++
+        if(j === nums.length){
+            i++
+            j = i
+            currentSum = 0
+        }
+        
     }
-    let i = j = maxNumberIndex
-
-    while( i >= 0 && j < nums.length){
-
-    }
-
-
+    return maxSum
+    // var curSum=nums[0];
+    // var maxSum=nums[0];
    
-
-    return (maxNumberIndex, maxSum, maxNumber)
-    
+    // for(var i = 1 ; i < nums.length ; i++){
+    //     var num = nums[i];
+    //     curSum = Math.max(num,curSum+num);    
+    //     maxSum = Math.max(maxSum,curSum);          
+    // }
+    // return maxSum;
 }
 
-console.log(maxSubArray2(nums))
+console.log(maxSubArray2(nums2))
