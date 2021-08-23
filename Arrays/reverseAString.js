@@ -14,7 +14,3 @@ return reversedString
 }
 
 console.log(reverseAString(""))
-
-let str = 0
-
-console.log(typeof(str) == "string")
