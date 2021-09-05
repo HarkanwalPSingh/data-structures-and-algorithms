@@ -31,7 +31,7 @@ let maxSubArray1 = function(nums){
 // console.log(maxSubArray1(nums1))
 
 
-// Solution 2: O(n) solution
+// Solution 2: O(n2) solution
 
 let nums2 = [8,-2,-4,-1,-8,3,8,8,3,4,2,-9,-1,-3,-6,8,-3,9]
 

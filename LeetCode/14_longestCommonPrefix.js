@@ -4,12 +4,21 @@ let longestCommonPrefix = function(strs){
     let i = 0
     while(i<strs.length){
         if (i === 0){
-            prefix = strs[i]
+            probablePrefix = strs[i]
         }
-        
+        for (let j = 0; j < probablePrefix.length && strs[i].length ; j++){
+            if(probablePrefix[j] === strs[i][j]){
+                prefix = prefix + probablePrefix[j]
+            }else {
+                break
+            }
+        }
+
+        probablePrefix = prefix
+        prefix = ""
         i++
     }
-    return prefix
+    return probablePrefix
 }
 
-console.log(longestCommonPrefix(["flower","flow","flight"]))
+console.log(longestCommonPrefix(["cir", "car"]))
