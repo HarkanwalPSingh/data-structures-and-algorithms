@@ -112,7 +112,6 @@ class LinkedList {
             currentNode = currentNode.next
             reversedLinkedList.length++
          }
-
         return reversedLinkedList
     }
 
