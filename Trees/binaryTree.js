@@ -69,8 +69,6 @@ class BinarySearchTree {
         let currentNode = this.root
         let successorsParent = null
 
-        
-
 
         while(true){
             if (value < currentNode.value){
@@ -126,7 +124,7 @@ class BinarySearchTree {
 
             if(!successor.left && !successor.right){
                 successor.left = currentNode.left
-                successor.right = currentNode.right
+                successor.right = null
                 if (parent.left === currentNode){
                     parent.left = successor
                 }else if(parent.right === currentNode){
@@ -162,6 +160,8 @@ class BinarySearchTree {
                     parent.left = successor
                 }else if(parent.right === currentNode){
                     parent.right = successor
+                } else if (parent === currentNode){
+                    this.root = successor
                 }
                 return successor
 
@@ -192,9 +192,9 @@ console.log(tree)
 console.log(JSON.stringify(traverse(tree.root)))
 
     //     9
-    //  2     20
-    //1  6  15  170
-//      5  7
+    //  2      20
+    //1  6   15  170
+//      5 7
 //    3
 //     4
 
