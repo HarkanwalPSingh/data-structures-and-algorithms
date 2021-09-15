@@ -199,9 +199,41 @@ console.log(JSON.stringify(traverse(tree.root)))
 //     4
 
 
-function traverse(node) {
-  const tree = { value: node.value };
-  tree.left = node.left === null ? null : traverse(node.left);
-  tree.right = node.right === null ? null : traverse(node.right);
-  return tree;
+function traverse(node){
+    const tree = {value : node.value, 
+                  left: null, 
+                  right: null}
+    if (node.left === null){
+        tree["left"] = null
+        return tree
+    } else if (node.right === null){
+        tree["right"] = null
+        return tree
+    }
+
+    tree["left"] = traverse(node.left)
+    tree["right"] = traverse(node.right)
+
+    return tree
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+// function traverse(node) {
+//   const tree = { value: node.value };
+//   tree.left = node.left === null ? null : traverse(node.left);
+//   tree.right = node.right === null ? null : traverse(node.right);
+//   return tree;
+// }
