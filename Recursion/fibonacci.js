@@ -1,4 +1,4 @@
-function fibonacciIterative (n){
+function fibonacciIterative (n){ //O(n)
     let sequence = [0, 1]
 
     for (let i = 2; i < n+1; i++){
@@ -10,7 +10,7 @@ function fibonacciIterative (n){
 
 // console.log(fibonacciIterative(11))
 
-function fibonacciRecursion(n){
+function fibonacciRecursion(n){ // O(2^n)
     if (n === 0){
         return 0
     } else if (n === 1){
