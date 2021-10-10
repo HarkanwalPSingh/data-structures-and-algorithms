@@ -1,4 +1,4 @@
-// Solution: 1
+Solution: 1
 
 let nums = [1,2,3,4,1]
 
@@ -14,3 +14,4 @@ let containsDuplicate = function(nums){
 }
 
 console.log(containsDuplicate(nums))
+
