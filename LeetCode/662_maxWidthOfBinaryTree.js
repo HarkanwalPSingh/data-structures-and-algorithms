@@ -30,7 +30,7 @@ let maximumWidth = function(root){
 
         } else if (currentNode === null && currentLevelNodes.length === 0){
             break
-        }else {
+        } else {
             if (currentNode.left){
                 queue.push(currentNode.left)
                 currentNode.left.val = currentNode.val +  "0"
