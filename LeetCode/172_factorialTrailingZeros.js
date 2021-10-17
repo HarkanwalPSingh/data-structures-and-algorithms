@@ -6,7 +6,7 @@ let trailingZeros = function(n){
         if (n/Math.pow(5,i) === 0){
             break
         }else {
-            count = Math.floor(n/Math.pow(5,i))
+            count += Math.floor(n/Math.pow(5,i))
         }
         i++
     }
