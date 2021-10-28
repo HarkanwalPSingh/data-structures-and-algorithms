@@ -33,17 +33,10 @@ let reverseInteger = function(x){
         num = Math.floor(x/10)
     }
 
-    if (negSign) return -1*x
+    if (negSign) return -1*res
 
     return res
     
-
-
-    x = parseInt(x, 10)
-
-    if(Math.abs(x) > 2147483647) return 0
-
-    return x    
 }
 
 console.log(reverseInteger(123))
