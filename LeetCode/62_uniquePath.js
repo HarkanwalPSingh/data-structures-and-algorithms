@@ -44,6 +44,22 @@ let uniquePaths = function(m, n){
             }
         }
     }
-    return dp[m-1][n-1]
+    // return BigInt(dp[m-1][n-1])
+
+    function factorial() {
+        result1 = 1
+        result2 = 1
+
+        for (let i = 0; i <= n-2; i++){
+            result1 *= (n+i)
+            result2 *= (i+1)
+        }
+
+        return result1/result2
+    }
+
+    // return parseInt(factorial(), 10)
+    return factorial() - dp[m-1][n-1]
+ 
 }
-console.log(uniquePaths(7,3))
+console.log(uniquePaths(33,33))
