@@ -18,7 +18,6 @@ let subsets = function(nums){
                 output.push(newArray)
                 combinations(newArray)
         }
-
     }
     return
     }
