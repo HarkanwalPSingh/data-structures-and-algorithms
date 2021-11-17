@@ -73,5 +73,5 @@ let setZeros = function(matrix){
 
 }
 
-let matrix = [[1,1,1],[1,0,1],[1,1,1]]
-setZeros(matrix)
+let board = [[1,1,1],[1,0,1],[1,1,1]]
+setZeros(board)

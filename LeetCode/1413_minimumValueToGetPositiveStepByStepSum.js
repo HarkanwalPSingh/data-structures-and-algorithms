@@ -10,6 +10,6 @@ let minStartValue = function(nums){
     if (minSum>=1){
         return minSum
     } else {
-        return Math.abe(minSum) + 1
+        return Math.abs(minSum) + 1
     }
 }
