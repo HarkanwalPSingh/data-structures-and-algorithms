@@ -1,46 +1,36 @@
-let numDecodings = function (s){
-    let results = []
+// let numDecodings = function (s){
+//     let results = []
 
-    function decode(start, comb, value, memo = {}){
-        let key = [start, value]
+//     function decode(start, comb, value, memo = {}){
 
-        if (key in memo) return memo[key]
-        if (value.length === 1 && value === "0") return 0
-        if (value.length === 2 && value[0] === "0") return 0
-        if (value.length === 2 && parseInt(value) > 26) return 0
-        if (start >= s.length) {
-            if (comb.length !== 0){
-                results.push(comb.slice())
-            }
-            return results.length
-        }
+//         if (value.length === 1 && value === "0") return 0
+//         if (value.length === 2 && value[0] === "0") return 0
+//         if (value.length === 2 && parseInt(value) > 26) return 0
+//         if (start >= s.length) {
+//             if (comb.length !== 0){
+//                 results.push(comb.slice())
+//             }
+//             return results.length
+//         }
 
-        let [key1, key2] = [null, null]
+//         let newVal = s.slice(start, start+1)
+//         comb.push(newVal)
+//         decode(start+1, comb, newVal, memo)
+//         comb.pop() 
 
-        let newVal = s.slice(start, start+1)
-        comb.push(newVal)
-        key1 = [start+1, newVal]
-        memo[key1] = decode(start+1, comb, newVal, memo)
-        comb.pop() 
+//         newVal = s.slice(start, start+2) 
+//         if (newVal.length === 2) {
+//             comb.push(newVal)
+//             decode(start+2, comb, newVal, memo)
+//             comb.pop()
+//         } 
 
-        newVal = s.slice(start, start+2) 
-        if (newVal.length === 2) {
-            key2 = [start+1, newVal]
-            comb.push(newVal)
-            memo[key2] = decode(start+2, comb, newVal, memo)
-            comb.pop()
-        } 
+//         return output
+//     }
 
-        console.log(memo[key1], memo[key2])
+//     return decode(0, [], "")
 
-        let output = (memo[key1] === undefined ? 0 : memo[key1]) + (memo[key2] === undefined ? 0 : memo[key2])
-
-        return output
-    }
-
-    return decode(0, [], "")
-
-}
+// }
 
 // let numDecodings = function (s){
 //     let dp = []
@@ -83,5 +73,41 @@ let numDecodings = function (s){
 
 // }
 
+let numDecodings = function (s){
+    
+    function decode(target, memo = {}){
 
-console.log(numDecodings("226"))
+        if (target in memo) return memo[target]
+        if (target === "") return 1
+
+
+        let ways = 0
+
+        let firstEle = parseInt(target[0])
+
+        if (firstEle !== 0){
+            let newTarget = target.slice(1)
+            ways = decode(newTarget, memo)
+        }
+
+
+        if (target.length >= 2 && firstEle !== 0){
+            let secondEle = parseInt(target[1])
+            if (firstEle*10 + secondEle <= 26){
+                let newTarget = target.slice(2)
+                ways += decode(newTarget, memo)
+            }
+            
+        }
+
+        memo[target] = ways
+        return ways     
+
+    }
+
+    return decode(s)
+
+}
+
+
+console.log(numDecodings("2611055971756562"))
