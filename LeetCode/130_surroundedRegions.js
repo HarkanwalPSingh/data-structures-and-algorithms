@@ -1,68 +1,48 @@
-// Two dfs calls where first call will tell if the region is surrounded and the second dfs call will mark down the region
+// Do a DFS call on the outer O elements and if an O is found, then change it to let's say V. Then loop through all the elements 
+// and if we find an O then it must be surrounded by X. So convert all Os to Xs and Vs to Os
 
 let solve = function(board){
-    let m = board.length
-    let n = board[0].length
-    let visited = []
-
-    for (let i = 0; i < m; i++){
-        visited[i] = []
-        for (let j = 0; j < n; j++){
-            visited[i][j] = 0
-        }
-    }
-
+    let rows = board.length
+    let cols = board[0].length
     
-    let isSurrounded = false
+    function dfs(row,col){
+        if (row < 0 || row >= rows) return
+        if (col < 0 || col >= cols) return
+        if (board[row][col] === "X" || board[row][col] === "V") return
+        if (board[row][col] === "O") board[row][col] = "V"
 
-    function flip (i,j){
-        console.log(board)
-        if (i === 0 || i === m-1) return 
-        if (j === 0 || j === n-1) return 
-
-        if (board[i][j] === "X") return
-        
-        board[i][j] = "X"
-
-        flip(i, j+1)
-        flip(i+1, j)
-        flip(i, j-1)
-        flip(i-1, j)
+        dfs(row,col+1)
+        dfs(row+1,col)
+        dfs(row,col-1)
+        dfs(row-1,col)
 
         return 
-    }
-
-    function checkIfSurrounded(i,j){
-        console.log( "board" + board, "visited" + visited)
-        if ((i === 0 || i === m -1) && board[i][j] === "X") return true
-        if ((j === 0 || j === n -1) && board[i][j] === "X") return true
-        if ((i === 0 || i === m -1) && board[i][j] === "O") return false
-        if ((j === 0 || j === n -1) && board[i][j] === "O") return false
-
-        if (visited[i][j] === "V") return true
-        if (board[i][j] === "X") return true
-
-        visited[i][j] = "V"
-        
-        return checkIfSurrounded(i,j+1) && checkIfSurrounded(i+1,j) && checkIfSurrounded(i,j-1) && checkIfSurrounded(i-1,j)
 
     }
 
 
-    for (let i = 1; i < m-1; i++){
-        for (let j = 1; j < n-1; j++){
-            
-            if (board[i][j] === "O"){
-                if (checkIfSurrounded(i,j)) {
-                    flip(i,j)
-                }
+    for (let r = 0; r < rows; r++){
+        if (r === 0 || r === rows - 1){
+            for (let c = 0; c < cols; c++){
+                dfs(r,c)
             }
+        } else {
+            dfs(r,0)
+            dfs(r,cols-1)
+        }        
+    }
+
+    for (let r = 0; r < rows; r++){
+        for (let c = 0; c < cols; c++){
+            if(board[r][c] === "V") board[r][c] = "O"
         }
     }
 
-  
-    console.log(board)
-
+    for (let r = 0; r < rows; r++){
+        for (let c = 0; c < cols; c++){
+            if(board[r][c] === "O") board[r][c] = "X"
+        }
+    }
 
 }
 
