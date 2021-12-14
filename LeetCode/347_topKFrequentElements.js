@@ -1,7 +1,16 @@
 let topKFrequent = function(nums, k){
 
-    
+    let hashMap = {}
 
+    for (let i = 0; i < nums.length; i++){
+        if (!(nums[i] in hashMap)){
+            hashMap[nums[i]] = [nums[i], 1]
+        } else {
+            hashMap[nums[i]][1] += 1
+        }
+    }
+
+    let values = Object.values(hashMap)
 
 
     function maxHeapify (heap, pIndex){
@@ -12,11 +21,11 @@ let topKFrequent = function(nums, k){
     
         if (leftIndex >= heapSize) return
     
-        if (leftIndex < heapSize && heap[pIndex] < heap[leftIndex]){
+        if (leftIndex < heapSize && heap[pIndex][1] < heap[leftIndex][1]){
             largest = leftIndex
         }
     
-        if (rightIndex < heapSize && heap[leftIndex] < heap[rightIndex] && heap[pIndex] < heap[rightIndex]){
+        if (rightIndex < heapSize && heap[leftIndex][1] < heap[rightIndex][1] && heap[pIndex][1] < heap[rightIndex][1]){
             largest = rightIndex
         }
 
@@ -32,20 +41,18 @@ let topKFrequent = function(nums, k){
         return
     }
 
-    let internalNodesLastIndex = Math.floor(array.length/2) - 1
+    let internalNodesLastIndex = Math.floor(values.length/2) - 1
     for (let i = internalNodesLastIndex; i >=0; i--){
-        maxHeapify(array, i)
+        maxHeapify(values, i)
     }
 
-    let hashMap = {}
+    
     let result = []
-    for (let i = 0; i < nums.length; i++){
-        
-        
-        
-        element = nums[0]
-        nums[0] = nums[nums.length-1]
-        nums.pop()
+    for (let i = 0; i < k; i++){
+        results.push(values[0][0])
+        values[0] = values[values.length-1]
+        values.pop()
         maxHeapify(nums, 0)
     }
+    return result
 }
